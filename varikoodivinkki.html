@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinkkisivu</title>
+    <style>
+        body {
+            background-color: #FFFFFF;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .image-container {
+            width: 300px;
+            height: 450px;
+            overflow: hidden;
+            position: relative;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="image1.jpg" alt="Kuva 1">
+        <img src="image2.jpg" alt="Kuva 2">
+        <img src="image3.jpg" alt="Kuva 3">
+        <img src="image4.jpg" alt="Kuva 4">
+        <img src="image5.jpg" alt="Kuva 5">
+    </div>
+
+    <script>
+        var imageContainer = document.querySelector(".image-container");
+        var images = imageContainer.getElementsByTagName("img");
+        var duration = 400; // Kuvan näyttöaika millisekunteina
+        var fadeOutDuration = 250; // Häivytyksen kesto millisekunteina
+
+        // Näytä kuvat yksi kerrallaan
+        for (var i = 0; i < images.length; i++) {
+            (function(index) {
+                setTimeout(function() {
+                    fadeInImage(index);
+                }, duration * index);
+            })(i);
+        }
+
+        // Häivytä kuva näkyviin
+        function fadeInImage(index) {
+            images[index].style.opacity = 1;
+            setTimeout(function() {
+                fadeOutImage(index);
+            }, fadeOutDuration);
+        }
+
+        // Häivytä kuva pois näkyvistä
+        function fadeOutImage(index) {
+            images[index].style.opacity = 0;
+        }
+    </script>
+</body>
+</html>

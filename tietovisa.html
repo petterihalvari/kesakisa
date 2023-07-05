@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kesäinen Pulmapeli</title>
+    <style>
+body {
+    background-color: #FFD700;
+    font-family: Arial, sans-serif;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+#quiz {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.question {
+    margin-bottom: 20px;
+    text-align: left;
+    max-width: 800px;
+}
+
+.secret-letter {
+    font-size: 50px;
+    color: #FF4500;
+    display: none;
+    margin-top: 20px;
+}
+
+.check-button {
+    font-size: 18px;
+    padding: 10px;
+    color: white;
+    background-color: #FF6347;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.check-button:hover {
+    background-color: #FF4500;
+}
+.instructions {
+    margin-top: 50px;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id ="quiz">
+        <div class="instructions">Vastaa alla oleviin kysymyksiin oikein, niin saat seuraavan kirjaimen.</div>
+        <div id="question1" class="question">
+            <p>Mitä juhlaa vietetään Suomessa kesäkuussa?</p>
+            <input type="radio" name="question1" value="a"> Itsenäisyyspäivä<br>
+            <input type="radio" name="question1" value="b"> Juhannus<br>
+            <input type="radio" name="question1" value="c"> Vappu
+        </div>
+        <div id="question2" class="question">
+            <p>Mikä on Suomen kansalliskukka?</p>
+            <input type="radio" name="question2" value="a"> Valkovuokko<br>
+            <input type="radio" name="question2" value="b"> Kielo<br>
+            <input type="radio" name="question2" value="c"> Juhannusruusu
+        </div>
+        <div id="question3" class="question">
+            <p>Mitä marjaa kutsutaan kesän ensimmäiseksi marjaksi?</p>
+            <input type="radio" name="question3" value="a"> Mustikka<br>
+            <input type="radio" name="question3" value="b"> Mansikka<br>
+            <input type="radio" name="question3" value="c"> Puolukka
+        </div>
+        <div id="question4" class="question">
+            <p>Mikä seuraavista linnuista ei laula kesäisin Suomessa?</p>
+            <input type="radio" name="question4" value="a"> Peippo<br>
+            <input type="radio" name="question4" value="b"> Kiuru<br>
+            <input type="radio" name="question4" value="c"> Flamingo
+        </div>
+        <div id="question5" class="question">
+            <p>Mihin peliin liittyy 4 pesää, joista yksi on kotipesä?</p>
+            <input type="radio" name="question5" value="a"> Pesäpallo<br>
+            <input type="radio" name="question5" value="b"> Mölkky<br>
+            <input type="radio" name="question5" value="c"> Petanque
+        </div>
+        <div id="question6" class="question">
+            <p>Mikä on yleisin Suomen järvissä uiva kala?</p>
+            <input type="radio" name="question6" value="a"> Ahven<br>
+            <input type="radio" name="question6" value="b"> Lohi<br>
+            <input type="radio" name="question6" value="c"> Hauki
+        </div>
+        <div id="question7" class="question">
+            <p>Mikä seuraavista on tämän kesän yksi kesähiteistä?</p>
+            <input type="radio" name="question7" value="a"> Pitkä kuuma kesä<br>
+            <input type="radio" name="question7" value="b"> Jäätelökesä<br>
+            <input type="radio" name="question7" value="c"> Suomen kesä
+        </div>
+        <div id="question8" class="question">
+            <p>Mikä seuraavista ei ole perinteinen kesäherkku?</p>
+            <input type="radio" name="question8" value="a"> Grillimakkara<br>
+            <input type="radio" name="question8" value="b"> Jäätelö<br>
+            <input type="radio" name="question8" value="c"> Piparkakut
+        </div>
+    </div>  
+
+    <button class="check-button" onclick="checkAnswers()">Tarkista vastaukset</button>
+    <div id="secretLetter" class="secret-letter">Kaikki oikein. Ota kirjain talteen: A</div>
+    <script>
+        var correctAnswers = {question1: "b" , question2: "b", question3: "b", question4: "c" ,question5: "a" , question6: "a", question7: "c",question8: "c"};
+
+        function checkAnswers() {
+            var allCorrect = true;
+            for (var question in correctAnswers) {
+                var radios = document.getElementsByName(question);
+                var selectedAnswer;
+                for (var i = 0; i < radios.length; i++) {
+                    if (radios[i].checked) {
+                        selectedAnswer = radios[i].value;
+                    }
+                }
+                if (selectedAnswer !== correctAnswers[question]) {
+                    allCorrect = false;
+                }
+            }
+            if (allCorrect) {
+                document.getElementById("secretLetter").style.display = "block";
+            } else {
+                alert("Kaikki vastaukset eivät ole oikein, yritä uudelleen");
+            }
+        }
+    </script>
+</body>
+</html>

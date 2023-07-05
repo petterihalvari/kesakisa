@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kesäinen Pulmapeli</title>
+    <style>
+        body {
+            background-color: #FFD700;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .input-field {
+            margin-bottom: 20px;
+            font-size: 20px;
+            padding: 10px;
+        }
+        .submit-button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #FFA500;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        .submit-button:hover {
+            background-color: #FF8C00;
+        }
+        .secret-letter {
+            font-size: 50px;
+            color: #FF4500;
+            display: none;
+        }
+        .instructions {
+            font-size: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">Matikkapulma - syötä laskutehtävien vastaukset yhteen pötköön alla olevaan laatikkoon</div>
+    <input type="text" id="answer" class="input-field" placeholder="Syötä numerosarja">
+    <button onclick="checkAnswer()" class="submit-button">Tarkista</button>
+    <div id="secretLetter" class="secret-letter">Ota kirjain talteen: A</div>
+    <script>
+        function checkAnswer() {
+            var answer = document.getElementById("answer").value;
+            // Oikea vastaus on esimerkiksi "12345"
+            if (answer == "22717") {
+                document.getElementById("secretLetter").style.display = "block";
+            } else {
+                alert("Väärin, yritä uudelleen");
+            }
+        }
+    </script>
+</body>
+</html>
